@@ -1,0 +1,15 @@
+# kind|name|source|track/profile|requiredness
+# Default install: core. Add --with-extensions for recommended extensions and
+# --with-ars for the optional ARS-Codex plugin.
+kdense|matlab|K-Dense-AI/scientific-agent-skills|core|required
+kdense|sympy|K-Dense-AI/scientific-agent-skills|core|required
+kdense|scientific-critical-thinking|K-Dense-AI/scientific-agent-skills|core|required
+kdense|scientific-visualization|K-Dense-AI/scientific-agent-skills|core|required
+kdense|statistical-analysis|K-Dense-AI/scientific-agent-skills|core|required
+kdense|uncertainty-and-units|K-Dense-AI/scientific-agent-skills|core|required
+kdense|optimize-for-gpu|K-Dense-AI/scientific-agent-skills|extension|recommended
+kdense|pymoo|K-Dense-AI/scientific-agent-skills|extension|recommended
+kdense|scikit-learn|K-Dense-AI/scientific-agent-skills|extension|recommended
+kdense|pytorch-lightning|K-Dense-AI/scientific-agent-skills|extension|recommended
+kdense|statsmodels|K-Dense-AI/scientific-agent-skills|extension|recommended
+plugin|ars-codex|Imbad0202/academic-research-skills-codex|main|optional

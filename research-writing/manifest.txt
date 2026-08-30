@@ -1,0 +1,32 @@
+# kind|name|source|track/profile|requiredness
+# Nature is intentionally synchronized as the repository's complete top-level
+# skill set. The explicit nature-skill rows record the audited 2026-08-30 set.
+plugin|ars-codex|Imbad0202/academic-research-skills-codex|main|required
+nature-source|all|https://github.com/Yuan1z0825/nature-skills.git|main|required
+nature-skill|nature-academic-search|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-citation|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-data|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-downloader|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-experiment-log|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-figure|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-image2ppt|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-literature-pipeline|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-paper-card|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-paper-to-patent|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-paper2ppt|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-polishing|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-proposal-writer|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-reader|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-ref-verifier|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-response|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-reviewer|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-shared|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-statistics|Yuan1z0825/nature-skills|all|required
+nature-skill|nature-writing|Yuan1z0825/nature-skills|all|required
+kdense|matlab|K-Dense-AI/scientific-agent-skills|core|required
+kdense|sympy|K-Dense-AI/scientific-agent-skills|core|required
+kdense|experimental-design|K-Dense-AI/scientific-agent-skills|core|required
+kdense|statistical-analysis|K-Dense-AI/scientific-agent-skills|core|required
+kdense|uncertainty-and-units|K-Dense-AI/scientific-agent-skills|core|required
+kdense|scientific-critical-thinking|K-Dense-AI/scientific-agent-skills|core|required
+kdense|scientific-visualization|K-Dense-AI/scientific-agent-skills|core|required
