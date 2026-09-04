@@ -16,7 +16,7 @@
 - Nature 源码：`~/ai-skills/nature-skills`
 - Research-Writing 的 Codex Skills：当前项目的 `.agents/skills`，由 Nature 官方同步脚本或 `gh skill install --scope project --agent codex` 管理
 - Research-Engineering 的 K-Dense Skills：当前项目的 `.agents/skills`，由 `gh skill install --scope project --agent codex` 管理
-- 两套 Bundle 均可用 `CODEX_SKILLS_DIR` 覆盖 Skill 安装、更新和验证位置
+- 两套 Bundle 均可用 `CODEX_SKILLS_DIR` 覆盖 Skill 安装、更新和验证位置，或用 `CODEX_PROJECT_ROOT` 覆盖项目根目录
 - ARS：由 Codex Plugin Marketplace 命令管理
 
 ## 推荐调用边界

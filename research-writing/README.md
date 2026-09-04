@@ -46,7 +46,7 @@ gh auth login
 
 脚本不会自动登录、读取 token 内容或修改凭据。
 
-Research-Writing 默认将 K-Dense 与 Nature Skill 安装到当前项目的 `.agents/skills`，使用 project scope；`install.sh`、`update.sh` 和 `verify.sh` 使用同一目录语义。设置 `CODEX_SKILLS_DIR` 可覆盖 K-Dense 与 Nature Skill 的安装、更新和验证位置。
+Research-Writing 默认将 K-Dense 与 Nature Skill 安装到宿主项目的 `.agents/skills`，使用 project scope。当本 Bundle 位于 `<host>/.agents/codex-research-bundles` 时，会从 Bundle 路径自动推导宿主项目根 `<host>`，安装命令在该根目录执行。`install.sh`、`update.sh` 和 `verify.sh` 使用同一目录语义；可用 `CODEX_PROJECT_ROOT` 覆盖项目根目录，或用 `CODEX_SKILLS_DIR` 直接指定 K-Dense 与 Nature Skill 的安装、更新和验证位置。
 
 Nature 安装严格使用已验证流程：缺少源码时 clone 到 `~/ai-skills/nature-skills`；随后执行 `scripts/update-codex-skills.sh --pull` 与 `--check`。脚本不使用 `--prune`。
 

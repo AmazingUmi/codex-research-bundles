@@ -39,7 +39,7 @@
 
 ## 安装
 
-Research-Engineering 默认将 K-Dense Skill 安装到当前项目的 `.agents/skills`，使用 `gh skill install --scope project --agent codex`。`install.sh`、`update.sh` 和 `verify.sh` 使用同一目录语义；如果设置 `CODEX_SKILLS_DIR`，则以该目录作为安装、更新和验证位置。
+Research-Engineering 默认将 K-Dense Skill 安装到宿主项目的 `.agents/skills`，使用 `gh skill install --scope project --agent codex`。当本 Bundle 位于 `<host>/.agents/codex-research-bundles` 时，会从 Bundle 路径自动推导宿主项目根 `<host>`，安装命令在该根目录执行。`install.sh`、`update.sh` 和 `verify.sh` 使用同一目录语义；可用 `CODEX_PROJECT_ROOT` 覆盖项目根目录，或用 `CODEX_SKILLS_DIR` 直接指定安装、更新和验证目录。
 
 ```bash
 ./verify.sh

@@ -53,6 +53,31 @@ codex_skills_dir() {
   printf '%s\n' "${CODEX_SKILLS_DIR:-$HOME/.codex/skills}"
 }
 
+# Host project root when this bundle is checked out at
+# <project>/.agents/codex-research-bundles: the directory containing .agents.
+bundle_host_project_root() {
+  local bundle_root parent
+  bundle_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+  parent="$(dirname "$bundle_root")"
+  if [ "$(basename "$parent")" = ".agents" ]; then
+    dirname "$parent"
+  fi
+}
+
+codex_project_root() {
+  local derived
+  if [ -n "${CODEX_PROJECT_ROOT:-}" ]; then
+    printf '%s\n' "$CODEX_PROJECT_ROOT"
+    return 0
+  fi
+  derived="$(bundle_host_project_root)"
+  if [ -n "$derived" ]; then
+    printf '%s\n' "$derived"
+    return 0
+  fi
+  git rev-parse --show-toplevel 2>/dev/null || pwd
+}
+
 preflight_gh_skill() {
   need_cmd gh
   status_info "GitHub CLI: $(gh --version | awk 'NR==1 { print; exit }')"
@@ -106,16 +131,21 @@ install_kdense_skill() {
   local -a gh_skill_args=(skill install "$repo" "$slug" --agent codex --scope "$scope")
   local project_root=""
   if [ "$scope" = "project" ]; then
-    project_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-  fi
-  if [ "$scope" = "project" ]; then
-    if [ -z "$project_root" ] || [ "$skills_dir" != "$project_root/.agents/skills" ]; then
+    project_root="$(codex_project_root)"
+    if [ "$skills_dir" != "$project_root/.agents/skills" ]; then
       gh_skill_args+=(--dir "$skills_dir")
     fi
   elif [ "$skills_dir" != "$HOME/.codex/skills" ]; then
     gh_skill_args+=(--dir "$skills_dir")
   fi
-  if ! gh "${gh_skill_args[@]}"; then
+  # gh resolves project scope from the working directory; run it from the host
+  # project root so a bundle nested under <project>/.agents is not mistaken
+  # for the project itself.
+  if [ -n "$project_root" ] && [ "$skills_dir" = "$project_root/.agents/skills" ]; then
+    if ! (cd "$project_root" && gh "${gh_skill_args[@]}"); then
+      die "K-Dense install failed for $slug"
+    fi
+  elif ! gh "${gh_skill_args[@]}"; then
     die "K-Dense install failed for $slug"
   fi
   [ -f "$skill_file" ] || die "K-Dense reported success but $skill_file is missing"
