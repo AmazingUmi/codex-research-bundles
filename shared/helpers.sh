@@ -87,6 +87,7 @@ skill_matches_repo() {
 install_kdense_skill() {
   local repo="$1"
   local slug="$2"
+  local scope="${3:-project}"
   local skills_dir
   local skill_file
   skills_dir="$(codex_skills_dir)"
@@ -102,11 +103,23 @@ install_kdense_skill() {
   fi
 
   status_info "Installing K-Dense skill: $slug"
-  if ! gh skill install "$repo" "$slug" --agent codex --scope user; then
+  local -a gh_skill_args=(skill install "$repo" "$slug" --agent codex --scope "$scope")
+  local project_root=""
+  if [ "$scope" = "project" ]; then
+    project_root="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+  fi
+  if [ "$scope" = "project" ]; then
+    if [ -z "$project_root" ] || [ "$skills_dir" != "$project_root/.agents/skills" ]; then
+      gh_skill_args+=(--dir "$skills_dir")
+    fi
+  elif [ "$skills_dir" != "$HOME/.codex/skills" ]; then
+    gh_skill_args+=(--dir "$skills_dir")
+  fi
+  if ! gh "${gh_skill_args[@]}"; then
     die "K-Dense install failed for $slug"
   fi
   [ -f "$skill_file" ] || die "K-Dense reported success but $skill_file is missing"
-  status_ok "installed K-Dense $slug at user/global Codex scope"
+  status_ok "installed K-Dense $slug at $skills_dir (scope: $scope)"
 }
 
 update_kdense_skill() {

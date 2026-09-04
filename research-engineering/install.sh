@@ -5,6 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=../shared/helpers.sh
 source "$SCRIPT_DIR/../shared/helpers.sh"
 MANIFEST="$SCRIPT_DIR/manifest.txt"
+PROJECT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+export CODEX_SKILLS_DIR="${CODEX_SKILLS_DIR:-$PROJECT_ROOT/.agents/skills}"
 WITH_EXTENSIONS=0
 WITH_ARS=0
 
@@ -33,14 +35,14 @@ fi
 status_info "Research-Engineering: K-Dense core"
 awk -F '|' '$1 == "kdense" && $4 == "core" { print }' "$MANIFEST" |
 while IFS='|' read -r _kind slug repo _profile _required; do
-  install_kdense_skill "$repo" "$slug"
+  install_kdense_skill "$repo" "$slug" project
 done
 
 if [ "$WITH_EXTENSIONS" -eq 1 ]; then
   status_info "Research-Engineering: recommended extensions"
   awk -F '|' '$1 == "kdense" && $4 == "extension" { print }' "$MANIFEST" |
   while IFS='|' read -r _kind slug repo _profile _required; do
-    install_kdense_skill "$repo" "$slug"
+    install_kdense_skill "$repo" "$slug" project
   done
 else
   status_ok "recommended extensions were not requested; use --with-extensions to add them"

@@ -46,6 +46,8 @@ gh auth login
 
 脚本不会自动登录、读取 token 内容或修改凭据。
 
+Research-Writing 默认将 K-Dense 与 Nature Skill 安装到当前项目的 `.agents/skills`，使用 project scope；`install.sh`、`update.sh` 和 `verify.sh` 使用同一目录语义。设置 `CODEX_SKILLS_DIR` 可覆盖 K-Dense 与 Nature Skill 的安装、更新和验证位置。
+
 Nature 安装严格使用已验证流程：缺少源码时 clone 到 `~/ai-skills/nature-skills`；随后执行 `scripts/update-codex-skills.sh --pull` 与 `--check`。脚本不使用 `--prune`。
 
 ARS 使用官方 Codex-native Marketplace：

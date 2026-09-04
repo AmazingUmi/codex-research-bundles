@@ -5,6 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # shellcheck source=../shared/helpers.sh
 source "$SCRIPT_DIR/../shared/helpers.sh"
 MANIFEST="$SCRIPT_DIR/manifest.txt"
+PROJECT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+export CODEX_SKILLS_DIR="${CODEX_SKILLS_DIR:-$PROJECT_ROOT/.agents/skills}"
 NATURE_CHECKOUT="${NATURE_SKILLS_SOURCE:-$HOME/ai-skills/nature-skills}"
 
 assert_manifest "$MANIFEST"

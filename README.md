@@ -14,7 +14,9 @@
 脚本只可能写入以下受控位置：
 
 - Nature 源码：`~/ai-skills/nature-skills`
-- Codex Global Skills：由 Nature 官方同步脚本或 `gh skill --scope user --agent codex` 管理
+- Research-Writing 的 Codex Skills：当前项目的 `.agents/skills`，由 Nature 官方同步脚本或 `gh skill install --scope project --agent codex` 管理
+- Research-Engineering 的 K-Dense Skills：当前项目的 `.agents/skills`，由 `gh skill install --scope project --agent codex` 管理
+- 两套 Bundle 均可用 `CODEX_SKILLS_DIR` 覆盖 Skill 安装、更新和验证位置
 - ARS：由 Codex Plugin Marketplace 命令管理
 
 ## 推荐调用边界
@@ -58,7 +60,7 @@
 
 ## 审阅快照（2026-08-30）
 
-- `~/.codex/skills`：27 个用户级 Skill；7 个 K-Dense Skill 与 20 个 Nature 顶层 Skill 均存在。
+- `~/.codex/skills`：历史审阅时的 27 个用户级 Skill；当前两个 Bundle 默认改为项目级 `.agents/skills`，不计入此快照。
 - Nature：`~/ai-skills/nature-skills` 位于 `main`，工作树干净；官方 `--check` 对 20 个 Skill 全部返回 `MATCH`，源码 commit 为 `bd4e415c1dcaf6df4ca701f8f8492a97e4b49921`。
 - K-Dense：当前 7 个已安装 Skill 的元数据均指向 `K-Dense-AI/scientific-agent-skills`、tag `v2.65.0`。Engineering 建议扩展 `optimize-for-gpu`、`pymoo`、`scikit-learn`、`pytorch-lightning`、`statsmodels` 均在上游 `skills/<slug>/SKILL.md` 中存在。
 - GitHub CLI：`gh 2.98.0` 提供 preview 状态的 `gh skill`；当前机器的 `gh auth status` 失败。脚本会在任何安装/更新写入前停止并提示用户自行运行 `gh auth login`。
@@ -97,8 +99,8 @@ cd research-engineering
 npx skills add K-Dense-AI/scientific-agent-skills --skill <slug> --global --agent codex --yes
 ```
 
-`npx skills` 可能使用 `~/.agents/skills` 的全局 canonical store/symlink 机制；使用前应通过 `npx skills list --global --agent codex` 检查实际落点。若需要严格的 `~/.codex/skills` 来源跟踪与当前安装行为，优先修复/升级 `gh skill`。
+`npx skills` 可能使用 `~/.agents/skills` 的全局 canonical store/symlink 机制；使用前应通过 `npx skills list --global --agent codex` 检查实际落点。Bundle 脚本默认使用当前项目的 `.agents/skills`；如需保持自定义目录语义，可通过 `CODEX_SKILLS_DIR` 显式指定。
 
 ## 清理策略
 
-本阶段不建议从当前 MacBook 删除任何 Skill：Writing Bundle 的目标集合与现有 27 个用户级 Skill 完全一致，且 ARS/Nature/K-Dense 之间虽有功能重叠，但职责层次不同。若未来确认 MacBook 只运行 Writing，仍建议先保存验证记录并观察一段时间；任何清理都应作为单独、显式确认的阶段执行。
+本阶段不建议从当前 MacBook 删除任何 Skill：历史 Writing Bundle 的目标集合与现有 27 个用户级 Skill 完全一致，且 ARS/Nature/K-Dense 之间虽有功能重叠，但职责层次不同。若未来需要清理旧的用户级副本，仍建议先保存验证记录并观察一段时间；任何清理都应作为单独、显式确认的阶段执行。
