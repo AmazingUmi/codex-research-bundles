@@ -38,7 +38,9 @@ Start a new Codex conversation afterwards so it picks up the new skills.
 
 - Skills install into the current project's `.agents/skills`
   - Override with `CODEX_SKILLS_DIR`, or set the project root with `CODEX_PROJECT_ROOT`
-- Nature source is cloned to `~/ai-skills/nature-skills`
+- Nature source is cloned to `~/ai-skills/nature-skills`; override with `NATURE_SKILLS_SOURCE`
+
+Example: `CODEX_SKILLS_DIR=~/my-skills NATURE_SKILLS_SOURCE=~/src/nature ./install.sh`
 - ARS is installed through the Codex plugin marketplace
 
 The scripts never delete skills, touch credentials, or install optional Python dependencies.

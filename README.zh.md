@@ -38,7 +38,9 @@ cd research-engineering
 
 - Skill 默认装进当前项目的 `.agents/skills`
   - 改目录：设置 `CODEX_SKILLS_DIR`；改项目根目录：设置 `CODEX_PROJECT_ROOT`
-- Nature 源码克隆到 `~/ai-skills/nature-skills`
+- Nature 源码克隆到 `~/ai-skills/nature-skills`，可用 `NATURE_SKILLS_SOURCE` 改位置
+
+例如：`CODEX_SKILLS_DIR=~/my-skills NATURE_SKILLS_SOURCE=~/src/nature ./install.sh`
 - ARS 通过 Codex 插件市场安装
 
 脚本不会删除 Skill、不会改认证信息、不会自动装 Python 可选依赖。
